@@ -370,6 +370,8 @@ namespace TXTCommunication.Fischertechnik.Txt
             }
             ThrowWhenNotConnected();
 
+
+
             return _masterInterface.GetInputValue(index);
         }
         

@@ -36,7 +36,9 @@ namespace TXTCommunication.Fischertechnik.Txt
 
         public short GetInputValue(int index)
         {
-            return InputValues[index];
+
+            var b = InputValues[index];
+            return b;
         }
         internal void SetInputValue(int index, short value)
         {

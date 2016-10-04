@@ -565,7 +565,7 @@ namespace TXCommunication
             }
             if (Connection == ConnectionStatus.Invalid)
             {
-                throw new InvalidOperationException("The connection is invalid");
+//                throw new InvalidOperationException("The connection is invalid");
             }
         }
 

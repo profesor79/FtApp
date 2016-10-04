@@ -132,7 +132,7 @@ namespace TXTCommunication.Fischertechnik
         /// <param name="index">The index of the input port</param>
         /// <param name="extension">The extension where the value should be read</param>
         /// ReSharper disable once UnusedParameter.Global
-        int GetInputValue(int index, int extension = 0);
+        int GetInputValue(int index, int extension);
 
         /// <summary>
         /// Configures the input mode of a given port.
