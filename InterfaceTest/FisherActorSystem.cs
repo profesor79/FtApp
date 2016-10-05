@@ -10,20 +10,19 @@ using TXTCommunication.Fischertechnik.Txt;
 
 namespace InterfaceTest
 {
-   public class MasterActor
+   public class FisherActorSystem
 
     {
+        public ActorSystem FisherSystem { get; }
 
-
-        private readonly ActorSystem system;
-
-        public MasterActor()
+        public FisherActorSystem()
         {
-            system = ActorSystem.Create("fisher");
-             _fisherController = system.ActorOf(Props.Create(typeof(FisherController)), "FisherController");
+            FisherSystem = ActorSystem.Create("fisher");
+             _fisherController = FisherSystem.ActorOf(Props.Create(typeof(FisherController)), "FisherController");
             _fisherController.Tell(new FisherController.StartMessage());
-
         }
+
+        
 
         private IActorRef _fisherController;
 

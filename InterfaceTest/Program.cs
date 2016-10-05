@@ -1,5 +1,6 @@
 ﻿using FtApp.Fischertechnik.Txt.Events;
 using System;
+using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
@@ -11,9 +12,9 @@ namespace InterfaceTest
 {
     static class Program
     {
-       
 
-        static void Main()
+
+        static  void Main()
         {
 
 
@@ -21,9 +22,15 @@ namespace InterfaceTest
             PingTxT();
 
 
-            var actorSystem = new MasterActor();
+            var actorSystem = new FisherActorSystem();
+            
+            while (!actorSystem.FisherSystem.WhenTerminated.IsCompleted)
+            {
+                Thread.Sleep(1000);
+            }
+            
 
-            Console.ReadLine();
+            Console.WriteLine("ActorSystem terminated - exiting");
 
 
 
@@ -31,23 +38,31 @@ namespace InterfaceTest
 
         private static void PingTxT()
         {
-            Ping pingSender = new Ping();
-            PingOptions options = new PingOptions();
+            var pingSender = new Ping();
+            var options = new PingOptions();
 
-      
+
 
             // Create a buffer of 32 bytes of data to be transmitted.
-            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 120;
-            
-            bool connected = false;
+            var data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            var buffer = Encoding.ASCII.GetBytes(data);
+            var timeout = 120;
+
+            var connected = false;
             while (!connected)
             {
-            var reply = pingSender.Send(TxtInterface.ControllerUsbIp, timeout, buffer, options);
-                connected = reply.Status == IPStatus.Success;
-                Console.WriteLine("Waiting for interface");
-                Thread.Sleep(1000);
+                try
+                {
+                    var reply = pingSender.Send(TxtInterface.ControllerUsbIp, timeout, buffer, options);
+                    // ReSharper disable once PossibleNullReferenceException
+                    connected = reply.Status == IPStatus.Success;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Waiting for connection");
+                    Thread.Sleep(2000);
+                }
+                
             }
             
             
