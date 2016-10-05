@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using TXCommunication.Packets;
-using TXTCommunication.Utils;
+using FactoryInterface.Fischertechnik.Tx.Packets;
+using FactoryInterface.Utils;
 
-namespace TXCommunication
+namespace FactoryInterface.Fischertechnik.Tx
 {
     /// <summary>
     /// The TxCommunication class is responsible for the raw communication to the ROBO TX Controller

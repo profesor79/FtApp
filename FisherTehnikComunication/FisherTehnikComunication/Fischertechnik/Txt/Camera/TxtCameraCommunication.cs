@@ -5,11 +5,11 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Threading;
-using TXTCommunication.Fischertechnik.Txt.Command;
-using TXTCommunication.Fischertechnik.Txt.Response;
-using TXTCommunication.Utils;
+using FactoryInterface.Fischertechnik.Txt.Command;
+using FactoryInterface.Fischertechnik.Txt.Response;
+using FactoryInterface.Utils;
 
-namespace TXTCommunication.Fischertechnik.Txt.Camera
+namespace FactoryInterface.Fischertechnik.Txt.Camera
 {
     class TxtCameraCommunication : IDisposable
     {

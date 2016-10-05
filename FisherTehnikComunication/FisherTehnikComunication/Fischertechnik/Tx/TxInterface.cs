@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
-using FtApp.Fischertechnik;
-using FtApp.Fischertechnik.Txt.Events;
-using TXCommunication.Packets;
-using TXTCommunication.Fischertechnik;
-using TXTCommunication.Fischertechnik.Txt;
+using FactoryInterface.Fischertechnik.Events;
+using FactoryInterface.Fischertechnik.Tx.Packets;
+
 // ReSharper disable InconsistentNaming
 
-namespace TXCommunication
+namespace FactoryInterface.Fischertechnik.Tx
 {
     class TxInterface : IFtInterface
     {

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using TXTCommunication.Fischertechnik.Txt.Command;
-using TXTCommunication.Fischertechnik.Txt.Response;
-using TXTCommunication.Utils;
+using FactoryInterface.Fischertechnik.Txt.Command;
+using FactoryInterface.Fischertechnik.Txt.Response;
+using FactoryInterface.Utils;
 
-namespace TXTCommunication.Fischertechnik.Txt
+namespace FactoryInterface.Fischertechnik.Txt
 {
     /// <summary>
     /// This class manages the TCP/IP communication between the TXT and us.

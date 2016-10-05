@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TXCommunication.Packets
+namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet is received after an request info packet. It contains the controller name and its firmware version

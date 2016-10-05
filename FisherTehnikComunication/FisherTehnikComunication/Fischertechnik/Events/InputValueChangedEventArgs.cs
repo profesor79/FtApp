@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FtApp.Fischertechnik.Txt.Events
+namespace FactoryInterface.Fischertechnik.Events
 {
     public class InputValueChangedEventArgs : EventArgs
     {

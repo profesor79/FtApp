@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FtApp.Utils
+namespace FactoryInterface.Utils
 {
     /// <summary>
     /// Provides some helper methods for common calculations

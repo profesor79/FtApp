@@ -1,4 +1,4 @@
-﻿namespace FtApp.Fischertechnik
+﻿namespace FactoryInterface.Fischertechnik
 {
     /// <summary>
     /// Contains the supported controller types

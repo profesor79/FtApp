@@ -1,17 +1,16 @@
-﻿using FtApp.Fischertechnik;
-using FtApp.Fischertechnik.Txt.Events;
-using FtApp.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Timers;
 using System.Linq;
-using TXTCommunication.Fischertechnik.Txt.Camera;
-using TXTCommunication.Fischertechnik.Txt.Command;
-using TXTCommunication.Fischertechnik.Txt.Response;
+using System.Timers;
+using FactoryInterface.Fischertechnik.Events;
+using FactoryInterface.Fischertechnik.Txt.Camera;
+using FactoryInterface.Fischertechnik.Txt.Command;
+using FactoryInterface.Fischertechnik.Txt.Response;
+using FactoryInterface.Utils;
 using Timer = System.Timers.Timer;
 // ReSharper disable InconsistentNaming
 
-namespace TXTCommunication.Fischertechnik.Txt
+namespace FactoryInterface.Fischertechnik.Txt
 {
     class TxtInterface : IFtInterface
     {

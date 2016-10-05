@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TXTCommunication.Fischertechnik.Txt.Response
+namespace FactoryInterface.Fischertechnik.Txt.Response
 {
     class ResponseExchangeData : ResponseBase
     {

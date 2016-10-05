@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using FtApp.Fischertechnik.Txt.Events;
-using TXTCommunication.Fischertechnik;
+using FactoryInterface.Fischertechnik.Events;
 
-namespace FtApp.Fischertechnik.Simulation
+namespace FactoryInterface.Fischertechnik.Simulation
 {
     /// <summary>
     /// This class simulates an interface. You can use it to test the UI without connecting to a real interface.

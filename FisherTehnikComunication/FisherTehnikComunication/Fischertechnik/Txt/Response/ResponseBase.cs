@@ -1,4 +1,4 @@
-namespace TXTCommunication.Fischertechnik.Txt.Response
+namespace FactoryInterface.Fischertechnik.Txt.Response
 {
     public abstract class ResponseBase
     {

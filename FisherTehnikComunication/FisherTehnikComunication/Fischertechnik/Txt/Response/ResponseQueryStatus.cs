@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace TXTCommunication.Fischertechnik.Txt.Response
+namespace FactoryInterface.Fischertechnik.Txt.Response
 {
     public class ResponseQueryStatus : ResponseBase
     {

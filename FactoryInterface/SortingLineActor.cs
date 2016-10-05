@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Akka.Event;
 
-namespace InterfaceTest
+namespace FactoryInterface
 {
     public partial class SortingLineActor : ReceiveActor
     {
@@ -14,7 +9,29 @@ namespace InterfaceTest
 
         public SortingLineActor()
         {
+
+            Become(WaitingForMaterial);
             Receive<object>(x => { });
+
+
+        }
+
+        private void WaitingForMaterial()
+        {
+
+
+            Receive<BeltConveyorSensorOneActivated>(m =>
+            {
+                // start belt conveyor
+
+            });
+
+
+            ReceiveAny(x =>
+            {
+                _log.Warning($"WaitingForMaterial: Received message {nameof(x)}");
+            });
+            
         }
     }
 }

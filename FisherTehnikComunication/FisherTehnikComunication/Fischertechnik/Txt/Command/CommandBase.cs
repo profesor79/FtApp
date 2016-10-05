@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TXTCommunication.Fischertechnik.Txt.Command
+namespace FactoryInterface.Fischertechnik.Txt.Command
 {
     public abstract class CommandBase
     {

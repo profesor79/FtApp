@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace TXTCommunication.Utils
+namespace FactoryInterface.Utils
 {
     /// <summary>
     /// Die TaskQueue führt eine übergebene Aufgabe auf einem anderen Thread auf. Die Aufgaben werden nacheinander auf dem selben Thread ausgeführt

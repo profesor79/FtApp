@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TXCommunication.Packets
+namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet is received after an output packet is sent. It contains the values of the universal input ports, the counter values and the display button values

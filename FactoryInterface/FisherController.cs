@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Event;
 using FactoryInterface.Enums;
-using FtApp.Fischertechnik.Txt.Events;
-using TXTCommunication.Fischertechnik;
-using TXTCommunication.Fischertechnik.Txt;
+using FactoryInterface.Fischertechnik;
+using FactoryInterface.Fischertechnik.Events;
+using FactoryInterface.Fischertechnik.Txt;
 
-namespace InterfaceTest
+namespace FactoryInterface
 {
     public partial class FisherController : ReceiveActor
     {
@@ -150,7 +146,8 @@ namespace InterfaceTest
 
         private void ControllerOnInputValueChanged(object sender, InputValueChangedEventArgs inputValueChangedEventArgs)
         {
-
+            var redLimit = 1480;
+            var whiteLimit = 1290;
             try
             {
                 var currentSensorsState = new int[8];
@@ -193,27 +190,29 @@ namespace InterfaceTest
                                     break;
                                 }
 
-                                _log.Debug($"Updated camera {i + 1}, from; \t{_previousSensorsState[i]}\t to: \t{currentSensorsState[i]}\t");
+                                // now we report only when sensor reading is increasing to avoid settling values
 
-                                //todo: add to config
-                                if (currentSensorsState[i] < 1280) //we have white 
+                                if (currentSensorsState[i] < _previousSensorsState[i])
                                 {
-                                    _log.Debug("White color");
-                                    _sortingLineActor.Tell(new SortingLineActor.CameraReadingChanged(currentSensorsState[i]));
                                     break;
                                 }
 
+                                _log.Debug($"Updated camera {i + 1}, from; \t{_previousSensorsState[i]}\t to: \t{currentSensorsState[i]}\t");
 
+                                //todo: add to config
+                                if (_previousSensorsState[i] < whiteLimit) //we have white 
+                                {
+                                    _log.Debug("White color");
+                                    _sortingLineActor.Tell(new SortingLineActor.CameraReadingChanged(ColorEnum.White));
+                                    break;
+                                }
+                                
 
-
-                                if (currentSensorsState[i] > 1280 && currentSensorsState[i] < 1480) //we have red
+                                if (_previousSensorsState[i] > whiteLimit && _previousSensorsState[i] < redLimit) //we have red
                                 {
                                     _log.Debug("Red color");
+                                    _sortingLineActor.Tell(new SortingLineActor.CameraReadingChanged(ColorEnum.Red));
                                 }
-
-
-
-                                
                                 
                                 break;
 

@@ -1,4 +1,4 @@
-﻿namespace TXCommunication.Packets
+﻿namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet is used to test the connection

@@ -1,4 +1,4 @@
-﻿namespace TXCommunication.Packets
+﻿namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet is the response which is sent back after an echo packet

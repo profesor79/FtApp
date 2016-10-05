@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TXTCommunication.Fischertechnik.Txt.Camera
+namespace FactoryInterface.Fischertechnik.Txt.Camera
 {
     class FrameReceivedEventArgs : EventArgs
     {

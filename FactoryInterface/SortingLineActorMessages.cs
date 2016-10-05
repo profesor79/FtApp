@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
-using Akka.Event;
+﻿using FactoryInterface.Enums;
 
-namespace InterfaceTest
+namespace FactoryInterface
 {
     public partial class SortingLineActor
     {
@@ -32,9 +26,9 @@ namespace InterfaceTest
 
         public class CameraReadingChanged
         {
-            public int ColorValue { get; }
+            public ColorEnum ColorValue { get; }
 
-            public CameraReadingChanged(int colorValue)
+            public CameraReadingChanged(ColorEnum colorValue)
             {
                 ColorValue = colorValue;
             }

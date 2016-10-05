@@ -1,7 +1,9 @@
 ﻿using System;
+using FactoryInterface.Fischertechnik.Txt;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace TXTCommunication.Fischertechnik.Txt
+namespace FactoryInterface.Fischertechnik
 {
     /// <summary>
     /// Holds the values of one single controller.

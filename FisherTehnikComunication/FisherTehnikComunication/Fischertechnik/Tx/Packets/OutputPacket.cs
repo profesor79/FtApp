@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TXCommunication.Packets
+namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet is sent to set the output values.

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TXTCommunication.Fischertechnik.Txt.Command
+namespace FactoryInterface.Fischertechnik.Txt.Command
 {
     class CommandStartOnline : CommandBase
     {

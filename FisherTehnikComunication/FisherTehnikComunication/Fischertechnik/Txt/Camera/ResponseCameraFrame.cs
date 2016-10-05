@@ -1,8 +1,9 @@
 ﻿using System;
-using TXTCommunication.Fischertechnik.Txt.Response;
+using FactoryInterface.Fischertechnik.Txt.Response;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace TXTCommunication.Fischertechnik.Txt.Camera
+namespace FactoryInterface.Fischertechnik.Txt.Camera
 {
     class ResponseCameraFrame : ResponseBase
     {

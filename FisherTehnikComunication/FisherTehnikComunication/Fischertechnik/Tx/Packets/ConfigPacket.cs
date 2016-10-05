@@ -1,6 +1,4 @@
-﻿using TXTCommunication.Fischertechnik;
-
-namespace TXCommunication.Packets
+﻿namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This packet updates the configuration of the outputs, inputs and counters

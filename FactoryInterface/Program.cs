@@ -1,14 +1,10 @@
-﻿using FtApp.Fischertechnik.Txt.Events;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
-using TXCommunication;
-using TXTCommunication.Fischertechnik;
-using TXTCommunication.Fischertechnik.Txt;
+using FactoryInterface.Fischertechnik.Txt;
 
-namespace InterfaceTest
+namespace FactoryInterface
 {
     static class Program
     {

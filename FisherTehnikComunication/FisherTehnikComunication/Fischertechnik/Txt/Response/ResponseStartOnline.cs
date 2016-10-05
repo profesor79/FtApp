@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TXTCommunication.Fischertechnik.Txt.Response
+namespace FactoryInterface.Fischertechnik.Txt.Response
 {
     class ResponseStartOnline : ResponseBase
     {

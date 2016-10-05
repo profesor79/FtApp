@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TXCommunication
+namespace FactoryInterface.Fischertechnik.Tx
 {
     /// <summary>
     /// This interface implements an adapter to an serial port. This can be a COM port, a bluetooth socket, tcp/ip socket, ...

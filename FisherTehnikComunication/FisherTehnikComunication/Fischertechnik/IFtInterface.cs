@@ -1,8 +1,7 @@
-﻿using FtApp.Fischertechnik;
-using FtApp.Fischertechnik.Txt.Events;
-using System;
+﻿using System;
+using FactoryInterface.Fischertechnik.Events;
 
-namespace TXTCommunication.Fischertechnik
+namespace FactoryInterface.Fischertechnik
 {
     public interface IFtInterface : IDisposable
     {

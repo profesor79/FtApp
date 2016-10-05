@@ -1,4 +1,4 @@
-﻿namespace TXCommunication.Packets
+﻿namespace FactoryInterface.Fischertechnik.Tx.Packets
 {
     /// <summary>
     /// This is the packet which is sent back after a configuration packet. It does not contain any payload data

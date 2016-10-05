@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace TXTCommunication.Fischertechnik.Txt.Command
+namespace FactoryInterface.Fischertechnik.Txt.Command
 {
     class CommandUpdateConfig : CommandBase
     {

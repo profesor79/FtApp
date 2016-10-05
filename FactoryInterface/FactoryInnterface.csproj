@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="FisherController.Start.cs" />
+    <Compile Include="FisherControllerMessages.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\FisherTehnikComunication\FisherTehnikComunication\FisherTehnikComunication.projitems" Label="Shared" />

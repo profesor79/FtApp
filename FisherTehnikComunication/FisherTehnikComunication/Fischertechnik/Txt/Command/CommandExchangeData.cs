@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TXTCommunication.Fischertechnik.Txt.Command
+namespace FactoryInterface.Fischertechnik.Txt.Command
 {
     class CommandExchangeData : CommandBase
     {
