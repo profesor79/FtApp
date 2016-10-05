@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Event;
+using FactoryInterface.Enums;
 using FtApp.Fischertechnik.Txt.Events;
 using TXTCommunication.Fischertechnik;
 using TXTCommunication.Fischertechnik.Txt;
@@ -18,7 +19,8 @@ namespace InterfaceTest
         private IActorRef _sortingLineActor;
         private IActorRef _getLineStatusActor;
         private IActorRef _sendProductionStatusActor;
-
+        
+        
 
 
         public FisherController()
@@ -32,6 +34,9 @@ namespace InterfaceTest
 
                 // Configure ports
                 SetPorts();
+
+                //starting belt conv
+                _controller.SetOutputValue((int) OutputsEnum.BeltConveyor,512);
             });
         }
 
@@ -62,7 +67,7 @@ namespace InterfaceTest
 
         private void CreateActors()
         {
-            //_sortingLineActor = Context.ActorOf(Props.Create(typeof(FisherController)), "sortingLineActor");
+            _sortingLineActor = Context.ActorOf(Props.Create(typeof(SortingLineActor)), "sortingLineActor");
             //_getLineStatusActor = Context.ActorOf(Props.Create(typeof(FisherController)), "getLineStatusActor");
             //_sendProductionStatusActor = Context.ActorOf(Props.Create(typeof(FisherController)),"sendProductionStatusActor");
 
@@ -72,9 +77,6 @@ namespace InterfaceTest
         {
 
 
-            Console.ReadLine();
-            Console.WriteLine("Disconnecting...");
-
             // Stop the inline mode
             _controller.StopOnlineMode();
 
@@ -83,8 +85,8 @@ namespace InterfaceTest
 
             // Don't forget to dispose
             _controller.Dispose();
-            Console.WriteLine("Disconnected...");
-            Console.ReadLine();
+            _log.Info("Disconnected...");
+            
 
         }
 
@@ -126,7 +128,7 @@ namespace InterfaceTest
         private void SetInputPorts()
         {
             _controller.ConfigureInputMode(0, InputMode.ModeR, true);
-            _controller.ConfigureInputMode(1, InputMode.ModeU, true);
+            _controller.ConfigureInputMode(1, InputMode.ModeU, false);
             _controller.ConfigureInputMode(2, InputMode.ModeR, true);
             _controller.ConfigureInputMode(3, InputMode.ModeR, true);
             _controller.ConfigureInputMode(4, InputMode.ModeR, true);
@@ -156,7 +158,7 @@ namespace InterfaceTest
                 for (var i = 0; i < 8; i++)
                 {
                     currentSensorsState[i] = _controller.GetInputValue(i, 0);
-
+                    
                 }
 
                 // now check which one was changed
@@ -165,14 +167,77 @@ namespace InterfaceTest
                 {
                     if (currentSensorsState[i] != _previousSensorsState[i])
                     {
-                        _log.Debug($"Updated input {i + 1}, from; {_previousSensorsState[i]} to: {currentSensorsState[i]}");
+                        
+
+                        switch ((InputsEnum)i)
+                        {
+                            case InputsEnum.BeltConveyorSensorOne:
+
+                                if (currentSensorsState[i] > _previousSensorsState[i])
+                                {
+                                    _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorOneActivated());
+                                }
+                                else
+                                {
+                                    _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorOneDeactivated());
+                                }
+                                _log.Debug($"Updated input {i + 1}, from; {_previousSensorsState[i]} to: {currentSensorsState[i]}");
+                                break;
+
+                            case InputsEnum.ColorSenor:
+                                
+                                // firstly rewove noise, so when readind is > 1600 and delta is ~10 then skip it
+                                if (currentSensorsState[i] > 1600 &&
+                                    Math.Abs(_previousSensorsState[i] - currentSensorsState[i]) < 10)
+                                {
+                                    break;
+                                }
+
+                                _log.Debug($"Updated camera {i + 1}, from; \t{_previousSensorsState[i]}\t to: \t{currentSensorsState[i]}\t");
+
+                                //todo: add to config
+                                if (currentSensorsState[i] < 1280) //we have white 
+                                {
+                                    _log.Debug("White color");
+                                    _sortingLineActor.Tell(new SortingLineActor.CameraReadingChanged(currentSensorsState[i]));
+                                    break;
+                                }
+
+
+
+
+                                if (currentSensorsState[i] > 1280 && currentSensorsState[i] < 1480) //we have red
+                                {
+                                    _log.Debug("Red color");
+                                }
+
+
+
+                                
+                                
+                                break;
+
+                            case InputsEnum.BeltConveyorSensorTwo:
+                                if (currentSensorsState[i] > _previousSensorsState[i])
+                                {
+                                    _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorTwoActivated());
+                                }
+                                else
+                                {
+                                    _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorTwoDeactivated());
+                                }
+
+                                _log.Debug($"Updated input {i + 1}, from; {_previousSensorsState[i]} to: {currentSensorsState[i]}");
+                                break;
+
+                        }
+
 
                         _previousSensorsState[i] = currentSensorsState[i];
+
+                        //_sortingLineActor.Tell("a");
                     }
                 }
-
-
-                Console.WriteLine();
             }
             catch (Exception e)
             {

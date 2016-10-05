@@ -32,6 +32,12 @@ namespace InterfaceTest
 
         public class CameraReadingChanged
         {
+            public int ColorValue { get; }
+
+            public CameraReadingChanged(int colorValue)
+            {
+                ColorValue = colorValue;
+            }
         }
 
 

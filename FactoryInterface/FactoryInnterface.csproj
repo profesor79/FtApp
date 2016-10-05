@@ -71,6 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ColorEnum.cs" />
+    <Compile Include="Enums\OutputsEnum.cs" />
+    <Compile Include="Enums\InputsEnum.cs" />
     <Compile Include="FisherController.cs" />
     <Compile Include="FisherActorSystem.cs" />
     <Compile Include="Program.cs" />
