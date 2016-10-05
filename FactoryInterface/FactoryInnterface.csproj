@@ -7,8 +7,8 @@
     <ProjectGuid>{E80B7B0D-4EDB-4A65-B192-992BE78897E9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InterfaceTest</RootNamespace>
-    <AssemblyName>InterfaceTest</AssemblyName>
+    <RootNamespace>FactoryInterface</RootNamespace>
+    <AssemblyName>FactoryInterface</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -85,7 +85,7 @@
     <Compile Include="FisherController.Start.cs" />
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\FtApp\FtApp\FtApp.projitems" Label="Shared" />
+  <Import Project="..\FisherTehnikComunication\FisherTehnikComunication\FisherTehnikComunication.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

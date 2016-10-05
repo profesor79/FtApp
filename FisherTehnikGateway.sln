@@ -3,20 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FtApp", "FtApp\FtApp\FtApp.shproj", "{88C31BBF-CB2D-4283-973F-6A2B3F8F55F5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB7180A8-C865-4B38-9CDE-3FDAD1D7D277}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceTest", "InterfaceTest\InterfaceTest.csproj", "{E80B7B0D-4EDB-4A65-B192-992BE78897E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryInnterface", "FactoryInterface\FactoryInnterface.csproj", "{E80B7B0D-4EDB-4A65-B192-992BE78897E9}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FisherTehnikComunication", "FisherTehnikComunication\FisherTehnikComunication\FisherTehnikComunication.shproj", "{88C31BBF-CB2D-4283-973F-6A2B3F8F55F5}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		FtApp\FtApp\FtApp.projitems*{88c31bbf-cb2d-4283-973f-6a2b3f8f55f5}*SharedItemsImports = 13
-		FtApp\FtApp\FtApp.projitems*{e80b7b0d-4edb-4a65-b192-992be78897e9}*SharedItemsImports = 4
+		FisherTehnikComunication\FisherTehnikComunication\FisherTehnikComunication.projitems*{88c31bbf-cb2d-4283-973f-6a2b3f8f55f5}*SharedItemsImports = 13
+		FisherTehnikComunication\FisherTehnikComunication\FisherTehnikComunication.projitems*{e80b7b0d-4edb-4a65-b192-992be78897e9}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
@@ -51,5 +51,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E80B7B0D-4EDB-4A65-B192-992BE78897E9} = {FB7180A8-C865-4B38-9CDE-3FDAD1D7D277}
+		{88C31BBF-CB2D-4283-973F-6A2B3F8F55F5} = {FB7180A8-C865-4B38-9CDE-3FDAD1D7D277}
 	EndGlobalSection
 EndGlobal
