@@ -15,8 +15,9 @@ namespace FactoryInterface
         private IActorRef _sortingLineActor;
         private IActorRef _getLineStatusActor;
         private IActorRef _sendProductionStatusActor;
-        
-        
+        private bool _firstRead = true;
+
+
 
 
         public FisherController()
@@ -31,8 +32,51 @@ namespace FactoryInterface
                 // Configure ports
                 SetPorts();
 
-                //starting belt conv
-                _controller.SetOutputValue((int) OutputsEnum.BeltConveyor,512);
+                
+            });
+
+            Receive<StartBeltConveyorMessage>(x =>
+            {
+                _log.Info("starting belt conv@");
+                _controller.SetOutputValue((int)OutputsEnum.BeltConveyor, 512);
+
+            });
+
+            
+
+            Receive<StopBeltConveyorMessage>(x =>
+            {
+                _log.Info("StopBeltConveyorMessage");
+                _controller.SetOutputValue((int)OutputsEnum.BeltConveyor, 0);
+
+            });
+
+
+            Receive<StartCommpressor>(x =>
+            {
+                _log.Info("StartCommpressor");
+                _controller.SetOutputValue((int)OutputsEnum.Compressor, 512);
+
+            });
+
+            Receive<StopCommpressor>(x =>
+            {
+                _log.Info("StopCommpressor");
+                _controller.SetOutputValue((int)OutputsEnum.Compressor, 0);
+
+            });
+            Receive<StartPusher>(p =>
+            {
+                _log.Info($"Starting pusher {p.Pusher}");
+                _controller.SetOutputValue((int)p.Pusher, 512);
+
+            });
+
+            Receive<StopPusher>(p =>
+            {
+                _log.Info($"Stopping pusher {p.Pusher}");
+                _controller.SetOutputValue((int)p.Pusher, 0);
+
             });
         }
 
@@ -148,15 +192,40 @@ namespace FactoryInterface
         {
             var redLimit = 1480;
             var whiteLimit = 1290;
-            try
-            {
-                var currentSensorsState = new int[8];
 
+
+            var currentSensorsState = new int[8];
+
+            for (var i = 0; i < 8; i++)
+            {
+                currentSensorsState[i] = _controller.GetInputValue(i, 0);
+
+            }
+
+
+            if (_firstRead) //avoid any noise after connection
+            {
                 for (var i = 0; i < 8; i++)
                 {
-                    currentSensorsState[i] = _controller.GetInputValue(i, 0);
-                    
+                    if (currentSensorsState[i] != _previousSensorsState[i])
+
+                    {
+                        _firstRead = false;
+                    }
+
+                    _previousSensorsState[i] = currentSensorsState[i];
+
                 }
+
+                
+
+                return;
+            }
+
+            
+            try
+            {
+                
 
                 // now check which one was changed
 
@@ -170,7 +239,7 @@ namespace FactoryInterface
                         {
                             case InputsEnum.BeltConveyorSensorOne:
 
-                                if (currentSensorsState[i] > _previousSensorsState[i])
+                                if (currentSensorsState[i] < _previousSensorsState[i])
                                 {
                                     _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorOneActivated());
                                 }
@@ -217,7 +286,7 @@ namespace FactoryInterface
                                 break;
 
                             case InputsEnum.BeltConveyorSensorTwo:
-                                if (currentSensorsState[i] > _previousSensorsState[i])
+                                if (currentSensorsState[i] < _previousSensorsState[i])
                                 {
                                     _sortingLineActor.Tell(new SortingLineActor.BeltConveyorSensorTwoActivated());
                                 }
