@@ -25,17 +25,17 @@ namespace TXCommunication.Packets
             ConstructPayload();
 
             // ReSharper disable once UseObjectOrCollectionInitializer
-            List<byte> packet = new List<byte>();
+            var packet = new List<byte>();
             
             // Packet start (STX)
             packet.Add(0x02);
             packet.Add(0x55);
 
             // Total length (header + payload); Note: The byte order of the packet length is swapped
-            int transferAreaIdLength = SendTransferAreaIdBytes ? 4 : 0;
-            int payloadLength = SendPayloadBytes ? PayloadBytes.Length : 0;
+            var transferAreaIdLength = SendTransferAreaIdBytes ? 4 : 0;
+            var payloadLength = SendPayloadBytes ? PayloadBytes.Length : 0;
 
-            int totalLength = 20 + transferAreaIdLength + payloadLength;
+            var totalLength = 20 + transferAreaIdLength + payloadLength;
             packet.Add((byte)((totalLength >> 8) & 0x00FF));
             packet.Add((byte)((totalLength >> 0) & 0x00FF));
 
@@ -70,7 +70,7 @@ namespace TXCommunication.Packets
             }
 
             // Checksum; Note: The byte order of the crc is swapped
-            short checksum = CalculateCrc(packet.ToArray(), 2, packet.Count);
+            var checksum = CalculateCrc(packet.ToArray(), 2, packet.Count);
             packet.Add((byte)((checksum >> 8) & 0x00FF));
             packet.Add((byte)((checksum >> 0) & 0x00FF));
 
@@ -85,7 +85,7 @@ namespace TXCommunication.Packets
             try
             {
                 //  Read the total length from the packet; Note: The byte order of the packet length is swapped
-                int position = 2;
+                var position = 2;
                 TotalLength = (short) ((data[position++] << 8) | (data[position++] << 0));
 
                 // From
@@ -153,7 +153,7 @@ namespace TXCommunication.Packets
         {
             short crc = 0;
 
-            for (int i = startIndex; i < endIndex; i++)
+            for (var i = startIndex; i < endIndex; i++)
             {
                 crc += packet[i];
             }

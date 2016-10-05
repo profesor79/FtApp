@@ -80,7 +80,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Camera
 
         private void ConnectToCameraServerMethod()
         {
-            int tries = 0;
+            var tries = 0;
             while (tries < 2) // Try 2 times to connect to the camera server
             {
                 TxtCommunication.TxtInterface.LogMessage("Trying to connect to camera server");
@@ -121,7 +121,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Camera
 
         private void CameraReceiverMethod()
         {
-            byte[] framedata = new byte[1];
+            var framedata = new byte[1];
 
             var responseCameraFrame = new ResponseCameraFrame();
 
@@ -175,7 +175,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Camera
                             ResponseCameraFrame frame;
                             if (ReceivedFrames.TryDequeue(out frame) && !RequestedStop)
                             {
-                                FrameReceivedEventArgs eventArgs = new FrameReceivedEventArgs(framedata, responseCameraFrame.FrameSizeCompressed + 2);
+                                var eventArgs = new FrameReceivedEventArgs(framedata, responseCameraFrame.FrameSizeCompressed + 2);
                                 FrameReceived?.Invoke(this, eventArgs);
                             }
 

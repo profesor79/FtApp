@@ -15,8 +15,8 @@ namespace FtApp.Utils
         /// <returns>true if the connection was valid otherwise false</returns>
         public static bool PingIp(string ip)
         {
-            Ping sender = new Ping();
-            PingReply result = sender.Send(ip, 500);
+            var sender = new Ping();
+            var result = sender.Send(ip, 500);
 
             return result?.Status == IPStatus.Success;
         }

@@ -31,8 +31,8 @@ namespace FtApp.Fischertechnik.Simulation
             OnlineStarted?.Invoke(this, EventArgs.Empty);
 
             // When the online mode "started" then we reset all input values
-            List<int> inputPorts = new List<int>();
-            for (int i = 0; i < GetInputCount(); i++)
+            var inputPorts = new List<int>();
+            for (var i = 0; i < GetInputCount(); i++)
             {
                 inputPorts.Add(i);
             }

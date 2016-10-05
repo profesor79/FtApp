@@ -144,12 +144,12 @@ namespace TXCommunication
                 _onlineStarted?.Invoke(this, new EventArgs());
 
                 // Fire InputValueChanged event with default values
-                List<int> inputPorts = new List<int>();
-                for (int i = 0; i < UniversalInputs; i++)
+                var inputPorts = new List<int>();
+                for (var i = 0; i < UniversalInputs; i++)
                 {
                     inputPorts.Add(i);
                 }
-                InputValueChangedEventArgs eventArgs = new InputValueChangedEventArgs(inputPorts);
+                var eventArgs = new InputValueChangedEventArgs(inputPorts);
 
                 _inputValueChanged?.Invoke(this, eventArgs);
             }
@@ -461,7 +461,7 @@ namespace TXCommunication
             var inputPacket = new InputPacket();
 
 
-            for (int i = 0; i < _masterInterface.OutputValues.Length; i++)
+            for (var i = 0; i < _masterInterface.OutputValues.Length; i++)
             {
                 outputPacket.PwmOutputValues[i] = (short)_masterInterface.OutputValues[i];
             }
@@ -481,7 +481,7 @@ namespace TXCommunication
 
             IList<int> valueChanged = new List<int>();
 
-            for (int i = 0; i < inputPacket.UniversalInputs.Length; i++)
+            for (var i = 0; i < inputPacket.UniversalInputs.Length; i++)
             {
                 var newInputValue = inputPacket.UniversalInputs[i];
 
@@ -496,21 +496,21 @@ namespace TXCommunication
             if (valueChanged.Count > 0)
             {
                 // Fire an event when an input value has changed
-                InputValueChangedEventArgs eventArgs = new InputValueChangedEventArgs(valueChanged);
+                var eventArgs = new InputValueChangedEventArgs(valueChanged);
                 _inputValueChanged?.Invoke(this, eventArgs);
             }
         }
 
         private void StopAllOutputs()
         {
-            for (int i = 0; i < PwmOutputs; i++)
+            for (var i = 0; i < PwmOutputs; i++)
             {
                 if (!_masterInterface.OutputModes[i / 2])
                 {
                     _masterInterface.SetOutputValue(i, 0);
                 }
             }
-            for (int i = 0; i < MotorOutputs; i++)
+            for (var i = 0; i < MotorOutputs; i++)
             {
                 if (_masterInterface.OutputModes[i / 2])
                 {
@@ -531,16 +531,16 @@ namespace TXCommunication
             var configResponsePacket = new ConfigResponsePacket();
             
 
-            for (int i = 0; i < _masterInterface.InputModes.Length; i++)
+            for (var i = 0; i < _masterInterface.InputModes.Length; i++)
             {
                 configPacket.UniversalInputs[i].Mode = _masterInterface.InputModes[i];
             }
-            for (int i = 0; i < _masterInterface.InputIsDigital.Length; i++)
+            for (var i = 0; i < _masterInterface.InputIsDigital.Length; i++)
             {
                 configPacket.UniversalInputs[i].Digital = _masterInterface.InputIsDigital[i];
             }
 
-            for (int i = 0; i < _masterInterface.OutputModes.Length; i++)
+            for (var i = 0; i < _masterInterface.OutputModes.Length; i++)
             {
                 configPacket.Motor[i] = _masterInterface.OutputModes[i];
             }

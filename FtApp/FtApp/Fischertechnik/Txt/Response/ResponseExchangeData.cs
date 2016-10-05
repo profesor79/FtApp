@@ -46,7 +46,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
                 throw new InvalidOperationException($"The byte array is to short to read. Length is {bytes.Length} bytes and 24 bytes are needed");
             }
 
-            int bytesIndex = 0;
+            var bytesIndex = 0;
 
             var id = BitConverter.ToUInt32(bytes, bytesIndex);
 
@@ -59,35 +59,35 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
             }
 
 
-            for (int i = 0; i < UniversalInputs.Length; i++)
+            for (var i = 0; i < UniversalInputs.Length; i++)
             {
                 UniversalInputs[i] = BitConverter.ToInt16(bytes, bytesIndex);
 
                 bytesIndex += sizeof(short);
             }
 
-            for (int i = 0; i < CounterInput.Length; i++)
+            for (var i = 0; i < CounterInput.Length; i++)
             {
                 CounterInput[i] = BitConverter.ToInt16(bytes, bytesIndex);
 
                 bytesIndex += sizeof(short);
             }
 
-            for (int i = 0; i < CounterValue.Length; i++)
+            for (var i = 0; i < CounterValue.Length; i++)
             {
                 CounterValue[i] = BitConverter.ToInt16(bytes, bytesIndex);
 
                 bytesIndex += sizeof(short);
             }
 
-            for (int i = 0; i < CounterCommandId.Length; i++)
+            for (var i = 0; i < CounterCommandId.Length; i++)
             {
                 CounterCommandId[i] = BitConverter.ToInt16(bytes, bytesIndex);
 
                 bytesIndex += sizeof(short);
             }
 
-            for (int i = 0; i < MotorCommandId.Length; i++)
+            for (var i = 0; i < MotorCommandId.Length; i++)
             {
                 MotorCommandId[i] = BitConverter.ToInt16(bytes, bytesIndex);
 
@@ -98,7 +98,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
             SoundCommandId = BitConverter.ToUInt16(bytes, bytesIndex);
 
 
-            for (int i = 0; i < Ir.Length; i++)
+            for (var i = 0; i < Ir.Length; i++)
             {
                 Ir[i] = new ResponseExchangeDataIr();
                 Ir[i].FromBytes(bytes, bytesIndex);
@@ -127,14 +127,14 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
 
         public byte[] GetBytes()
         {
-            List<byte> bytes = new List<byte> {IrLeftX, IrLeftY, IrRightX, IrRightY, IrBits};
+            var bytes = new List<byte> {IrLeftX, IrLeftY, IrRightX, IrRightY, IrBits};
             
             return bytes.ToArray();
         }
 
         public void FromBytes(byte[] bytes, int offset)
         {
-            int bytesIndex = offset;
+            var bytesIndex = offset;
 
             IrLeftX = bytes[bytesIndex++];
             IrLeftY = bytes[bytesIndex++];

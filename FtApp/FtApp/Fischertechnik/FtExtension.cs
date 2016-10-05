@@ -139,12 +139,12 @@ namespace TXTCommunication.Fischertechnik.Txt
 
         public void ResetValues()
         {
-            for (int i = 0; i < InputValues.Length; i++)
+            for (var i = 0; i < InputValues.Length; i++)
             {
                 InputValues[i] = 0;
             }
 
-            for (int i = 0; i < OutputValues.Length; i++)
+            for (var i = 0; i < OutputValues.Length; i++)
             {
                 OutputValues[i] = 0;
             }

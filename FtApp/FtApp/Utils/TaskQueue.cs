@@ -13,7 +13,7 @@ namespace TXTCommunication.Utils
 
         public static void DisposeAllQueues()
         {
-            foreach (TaskQueue taskQueue in TaskQueues)
+            foreach (var taskQueue in TaskQueues)
             {
                 taskQueue.Dispose();
             }

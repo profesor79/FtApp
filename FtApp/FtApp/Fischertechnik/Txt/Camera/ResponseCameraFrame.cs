@@ -36,7 +36,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Camera
                 throw new InvalidOperationException($"The byte array is to short to read. Length is {bytes.Length} bytes and {GetResponseLength()}bytes are needed");
             }
 
-            int bytesIndex = 0;
+            var bytesIndex = 0;
 
             var id = BitConverter.ToUInt32(bytes, bytesIndex);
             bytesIndex += sizeof(uint);

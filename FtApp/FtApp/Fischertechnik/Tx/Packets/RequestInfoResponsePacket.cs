@@ -17,7 +17,7 @@ namespace TXCommunication.Packets
 
         public override bool FromByteArray(byte[] data)
         {
-            bool baseReturn = base.FromByteArray(data);
+            var baseReturn = base.FromByteArray(data);
 
             // Read the controller name from the payload
             ControllerName = Encoding.ASCII.GetString(PayloadBytes, 6, 17);
@@ -25,10 +25,10 @@ namespace TXCommunication.Packets
 
 
             // Read the firmware version
-            int versionStartIndex = 60;
-            byte majorVercion = PayloadBytes[versionStartIndex++];
-            byte minorVersion = PayloadBytes[versionStartIndex++];
-            byte buildVersion = PayloadBytes[versionStartIndex];
+            var versionStartIndex = 60;
+            var majorVercion = PayloadBytes[versionStartIndex++];
+            var minorVersion = PayloadBytes[versionStartIndex++];
+            var buildVersion = PayloadBytes[versionStartIndex];
             
             FirmwareVersion = $"{majorVercion}.{minorVersion}.{buildVersion}";
 

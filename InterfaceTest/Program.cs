@@ -21,27 +21,23 @@ namespace InterfaceTest
             // before we start ensure that we are connected
             PingTxT();
 
-
+            // create and start actor system
             var actorSystem = new FisherActorSystem();
-            
+            actorSystem.Start();
+
+            // wait for termination (keep the window open)
             while (!actorSystem.FisherSystem.WhenTerminated.IsCompleted)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
             
-
             Console.WriteLine("ActorSystem terminated - exiting");
-
-
-
         }
 
         private static void PingTxT()
         {
             var pingSender = new Ping();
             var options = new PingOptions();
-
-
 
             // Create a buffer of 32 bytes of data to be transmitted.
             var data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
@@ -53,6 +49,8 @@ namespace InterfaceTest
             {
                 try
                 {
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Waiting for connection");
                     var reply = pingSender.Send(TxtInterface.ControllerUsbIp, timeout, buffer, options);
                     // ReSharper disable once PossibleNullReferenceException
                     connected = reply.Status == IPStatus.Success;

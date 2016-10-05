@@ -17,7 +17,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
         {
             IList<byte> bytes = new List<byte>(base.GetByteArray());
 
-            foreach (byte b in Name)
+            foreach (var b in Name)
             {
                 bytes.Add(b);
             }

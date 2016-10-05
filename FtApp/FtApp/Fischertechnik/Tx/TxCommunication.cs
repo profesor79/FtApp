@@ -153,7 +153,7 @@ namespace TXCommunication
                     _adapter.Write(packet.GetByteArray());
 
                     // Read the response packet
-                    byte[] response = _adapter.Read(responsePacket.GetPacketLength());
+                    var response = _adapter.Read(responsePacket.GetPacketLength());
 
                     responsePacket.FromByteArray(response);
 
@@ -200,7 +200,7 @@ namespace TXCommunication
                 var responsePacket = new RequestInfoResponsePacket();
                 
                 // Read the response packet
-                byte[] response = _adapter.Read(responsePacket.GetPacketLength());
+                var response = _adapter.Read(responsePacket.GetPacketLength());
                 responsePacket.FromByteArray(response);
                 
                 // Close the connection and dispose the adapter

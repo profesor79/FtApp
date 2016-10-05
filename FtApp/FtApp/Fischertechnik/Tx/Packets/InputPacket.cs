@@ -31,26 +31,26 @@ namespace TXCommunication.Packets
 
         public override bool FromByteArray(byte[] data)
         {
-            bool baseReturn = base.FromByteArray(data);
+            var baseReturn = base.FromByteArray(data);
 
-            int packetPosition = 6;
+            var packetPosition = 6;
 
             // The first bytes contain the values of the universal input ports
-            for (int i = 0; i < UniversalInputs.Length; i++)
+            for (var i = 0; i < UniversalInputs.Length; i++)
             {
                 UniversalInputs[i] = BitConverter.ToUInt16(PayloadBytes, packetPosition);
                 packetPosition += sizeof(ushort);
             }
 
             // The next bytes contain the raw values of the conters
-            for (int i = 0; i < CounterInput.Length; i++)
+            for (var i = 0; i < CounterInput.Length; i++)
             {
                 CounterInput[i] = PayloadBytes[packetPosition];
                 packetPosition += sizeof(char);
             }
 
             // The last bytes contain the values of the counters
-            for (int i = 0; i < CounterValue.Length; i++)
+            for (var i = 0; i < CounterValue.Length; i++)
             {
                 CounterValue[i] = BitConverter.ToUInt16(PayloadBytes, packetPosition);
                 packetPosition += sizeof(ushort);

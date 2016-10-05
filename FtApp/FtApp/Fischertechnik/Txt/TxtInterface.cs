@@ -184,12 +184,12 @@ namespace TXTCommunication.Fischertechnik.Txt
 
                 _onlineStarted?.Invoke(this, new EventArgs());
 
-                List<int> inputPorts = new List<int>();
-                for (int i = 0; i < UniversalInputs; i++)
+                var inputPorts = new List<int>();
+                for (var i = 0; i < UniversalInputs; i++)
                 {
                     inputPorts.Add(i);
                 }
-                InputValueChangedEventArgs eventArgs = new InputValueChangedEventArgs(inputPorts);
+                var eventArgs = new InputValueChangedEventArgs(inputPorts);
 
                 _inputValueChanged?.Invoke(this, eventArgs);
             }
@@ -421,7 +421,7 @@ namespace TXTCommunication.Fischertechnik.Txt
             var responseExchangeData = new ResponseExchangeData();
 
 
-            for (int i = 0; i < _masterInterface.OutputValues.Length; i++)
+            for (var i = 0; i < _masterInterface.OutputValues.Length; i++)
             {
                 commandExchangeData.PwmOutputValues[i] = (short)_masterInterface.OutputValues[i];
             }
@@ -453,7 +453,7 @@ namespace TXTCommunication.Fischertechnik.Txt
 
             IList<int> valueChanged = new List<int>();
 
-            for (int i = 0; i < responseExchangeData.UniversalInputs.Length; i++)
+            for (var i = 0; i < responseExchangeData.UniversalInputs.Length; i++)
             {
                 var newInputValue = responseExchangeData.UniversalInputs[i];
 
@@ -468,7 +468,7 @@ namespace TXTCommunication.Fischertechnik.Txt
             if (valueChanged.Count > 0)
             {
                 // Fire an event when an input value has changed
-                InputValueChangedEventArgs eventArgs = new InputValueChangedEventArgs(valueChanged);
+                var eventArgs = new InputValueChangedEventArgs(valueChanged);
                 _inputValueChanged?.Invoke(this, eventArgs);
             }
 
@@ -484,14 +484,14 @@ namespace TXTCommunication.Fischertechnik.Txt
 
         private void StopAllOutputs()
         {
-            for (int i = 0; i < PwmOutputs; i++)
+            for (var i = 0; i < PwmOutputs; i++)
             {
                 if (!_masterInterface.OutputModes[i / 2])
                 {
                     _masterInterface.SetOutputValue(i, 0);
                 }
             }
-            for (int i = 0; i < MotorOutputs; i++)
+            for (var i = 0; i < MotorOutputs; i++)
             {
                 if (_masterInterface.OutputModes[i/2])
                 {
@@ -515,18 +515,18 @@ namespace TXTCommunication.Fischertechnik.Txt
             commandUpdateConfig.ConfigId = (short)++_configurationIndex;
 
 
-            for (int i = 0; i < _masterInterface.InputModes.Length; i++)
+            for (var i = 0; i < _masterInterface.InputModes.Length; i++)
             {
                 commandUpdateConfig.Config.UniversalInputs[i].Mode = (byte)_masterInterface.InputModes[i];
             }
-            for (int i = 0; i < _masterInterface.InputIsDigital.Length; i++)
+            for (var i = 0; i < _masterInterface.InputIsDigital.Length; i++)
             {
                 commandUpdateConfig.Config.UniversalInputs[i].Digital = _masterInterface.InputIsDigital[i]
                     ? (byte) 1
                     : (byte) 0;
             }
 
-            for (int i = 0; i < _masterInterface.OutputModes.Length; i++)
+            for (var i = 0; i < _masterInterface.OutputModes.Length; i++)
             {
                 commandUpdateConfig.Config.Motor[i] = _masterInterface.OutputModes[i]
                     ? (byte)1

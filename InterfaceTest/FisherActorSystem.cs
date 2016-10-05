@@ -18,11 +18,15 @@ namespace InterfaceTest
         public FisherActorSystem()
         {
             FisherSystem = ActorSystem.Create("fisher");
-             _fisherController = FisherSystem.ActorOf(Props.Create(typeof(FisherController)), "FisherController");
-            _fisherController.Tell(new FisherController.StartMessage());
+         
         }
 
-        
+
+        public void Start()
+        {
+            _fisherController = FisherSystem.ActorOf(Props.Create(typeof(FisherController)), "FisherController");
+            _fisherController.Tell(new FisherController.StartMessage());
+        }
 
         private IActorRef _fisherController;
 

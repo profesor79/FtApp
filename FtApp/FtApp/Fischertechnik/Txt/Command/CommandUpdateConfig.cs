@@ -19,7 +19,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
 
         public override byte[] GetByteArray()
         {
-            List<byte> bytes = new List<byte>(base.GetByteArray());
+            var bytes = new List<byte>(base.GetByteArray());
 
             bytes.AddRange(BitConverter.GetBytes(ConfigId));
             bytes.AddRange(BitConverter.GetBytes(ExtensionId));
@@ -49,12 +49,12 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
 
         public FtX1Config()
         {
-            for (int i = 0; i < UniversalInputs.Length; i++)
+            for (var i = 0; i < UniversalInputs.Length; i++)
             {
                 UniversalInputs[i] = new UniversalInputConfig();
             }
 
-            for (int i = 0; i < Counters.Length; i++)
+            for (var i = 0; i < Counters.Length; i++)
             {
                 Counters[i] = new CounterConfig();
             }
@@ -63,22 +63,22 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
         public byte[] GetByteArray()
         {
             // ReSharper disable once UseObjectOrCollectionInitializer
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
             
             bytes.AddRange(Dummy);
             bytes.AddRange(Motor);
 
-            foreach (UniversalInputConfig inputConfig in UniversalInputs)
+            foreach (var inputConfig in UniversalInputs)
             {
                 bytes.AddRange(inputConfig.GetByteArray());
             }
 
-            foreach (CounterConfig counterConfig in Counters)
+            foreach (var counterConfig in Counters)
             {
                 bytes.AddRange(counterConfig.GetByteArray());
             }
 
-            foreach (short s in MotorConfig)
+            foreach (var s in MotorConfig)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }
@@ -97,7 +97,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
         public byte[] GetByteArray()
         {
             // ReSharper disable once UseObjectOrCollectionInitializer
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
 
             bytes.Add(Mode);
             bytes.Add(Digital);
@@ -115,7 +115,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
         public byte[] GetByteArray()
         {
             // ReSharper disable once UseObjectOrCollectionInitializer
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
 
             bytes.Add(Mode);
             bytes.AddRange(Dummy);

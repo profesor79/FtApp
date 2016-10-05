@@ -30,17 +30,17 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
 
         public string GetDecoratedVersion()
         {
-            byte version0 = (byte) (Version >> 0);
-            byte version1 = (byte) (Version >> 8);
-            byte version2 = (byte) (Version >> 16);
-            byte version3 = (byte) (Version >> 24);
+            var version0 = (byte) (Version >> 0);
+            var version1 = (byte) (Version >> 8);
+            var version2 = (byte) (Version >> 16);
+            var version3 = (byte) (Version >> 24);
 
             return $"{version3}.{version2}.{version1}.{version0}";
         }
 
         public string GetControllerName()
         {
-            string decoreatedName = Encoding.ASCII.GetString(Devicename, 0, Devicename.Length);
+            var decoreatedName = Encoding.ASCII.GetString(Devicename, 0, Devicename.Length);
             decoreatedName = decoreatedName.TrimEnd('\0');
             return decoreatedName;
         }
@@ -57,7 +57,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
                 throw new InvalidOperationException($"The byte array is to short to read. Length is {bytes.Length} bytes and 24 bytes are needed");
             }
 
-            int bytesIndex = 0;
+            var bytesIndex = 0;
 
             var id = BitConverter.ToUInt32(bytes, bytesIndex);
 
@@ -71,7 +71,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Response
 
 
 
-            for (int i = 0; i < Devicename.Length; i++)
+            for (var i = 0; i < Devicename.Length; i++)
             {
                 Devicename[i] = bytes[bytesIndex];
 

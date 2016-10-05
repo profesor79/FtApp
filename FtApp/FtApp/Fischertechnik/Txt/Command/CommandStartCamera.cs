@@ -18,7 +18,7 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
 
         public override byte[] GetByteArray()
         {
-            List<byte> bytes = new List<byte>(base.GetByteArray());
+            var bytes = new List<byte>(base.GetByteArray());
 
             bytes.AddRange(BitConverter.GetBytes(Width));
             bytes.AddRange(BitConverter.GetBytes(Height));

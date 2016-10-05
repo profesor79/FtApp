@@ -29,27 +29,27 @@ namespace TXTCommunication.Fischertechnik.Txt.Command
 
         public override byte[] GetByteArray()
         {
-            List<byte> bytes = new List<byte>(base.GetByteArray());
+            var bytes = new List<byte>(base.GetByteArray());
 
             // Construct the byte array
 
-            foreach (short s in PwmOutputValues)
+            foreach (var s in PwmOutputValues)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }
-            foreach (short s in MotorMasterValues)
+            foreach (var s in MotorMasterValues)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }
-            foreach (short s in MotorDistanceValues)
+            foreach (var s in MotorDistanceValues)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }
-            foreach (short s in MotorCommandId)
+            foreach (var s in MotorCommandId)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }
-            foreach (short s in CounterResetCommandId)
+            foreach (var s in CounterResetCommandId)
             {
                 bytes.AddRange(BitConverter.GetBytes(s));
             }

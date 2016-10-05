@@ -129,7 +129,7 @@ namespace TXTCommunication.Fischertechnik.Txt
                     Receive(_socket, responseBytes, responseBytes.Length);
 
 
-                    uint responseId = BitConverter.ToUInt32(responseBytes, 0);
+                    var responseId = BitConverter.ToUInt32(responseBytes, 0);
 
                     if (responseId != response.ResponseId)
                     {

@@ -28,36 +28,36 @@ namespace TXCommunication.Packets
 
         protected override byte[] ConstructPayload()
         {
-            List<byte> payloadList = new List<byte>();
+            var payloadList = new List<byte>();
             
             // The first 8 bytes contain the reset commands for every counter.
             // If the reset command is set, the related counter value will be resetted
-            foreach (ushort counterReset in CounterResetCommandId)
+            foreach (var counterReset in CounterResetCommandId)
             {
                 payloadList.AddRange(BitConverter.GetBytes(counterReset));
             }
 
             // The next bytes set the motor master. If one master is set, another motor can be configured to
             // be syncron
-            foreach (byte motorMasterValue in MotorMasterValues)
+            foreach (var motorMasterValue in MotorMasterValues)
             {
                 payloadList.AddRange(BitConverter.GetBytes(motorMasterValue));
             }
 
             // These bytes contain the raw PWM values of each port. The values must be between 1 and 512
-            foreach (short pwmOutputValue in PwmOutputValues)
+            foreach (var pwmOutputValue in PwmOutputValues)
             {
                 payloadList.AddRange(BitConverter.GetBytes(pwmOutputValue));
             }
 
             // These bytes set the distance of one motor.
-            foreach (ushort motorDistanceValue in MotorDistanceValues)
+            foreach (var motorDistanceValue in MotorDistanceValues)
             {
                 payloadList.AddRange(BitConverter.GetBytes(motorDistanceValue));
             }
 
             // The last bytes set the motor command id
-            foreach (ushort motorCommandId in MotorCommandId)
+            foreach (var motorCommandId in MotorCommandId)
             {
                 payloadList.AddRange(BitConverter.GetBytes(motorCommandId));
             }
