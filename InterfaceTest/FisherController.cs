@@ -1,30 +1,31 @@
-﻿using FtApp.Fischertechnik.Txt.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
+using Akka.Event;
+using FtApp.Fischertechnik.Txt.Events;
 using TXTCommunication.Fischertechnik;
 using TXTCommunication.Fischertechnik.Txt;
 
 namespace InterfaceTest
 {
-   public class ActorSystemFisher
-
+    public partial class FisherController : ReceiveActor
     {
-
         private IFtInterface _controller;
-        private ActorSystem _actorSystemFisher;
+        private readonly ILoggingAdapter log = Context.GetLogger();
+        public FisherController()
+        {
+            Receive<StartMessage>(m =>
+            {
+                Setup();
+            });
+        }
 
-        public void Setup()
+        public void Stop()
         {
 
-            SetupController();
-            _actorSystemFisher =  ActorSystem.Create("fisher");
-            _actorSystemFisher.ActorOf()
-            
-            
 
             Console.ReadLine();
             Console.WriteLine("Disconnecting...");
@@ -40,10 +41,15 @@ namespace InterfaceTest
             Console.WriteLine("Disconnected...");
             Console.ReadLine();
 
-
-
-
         }
+
+        public void Setup()
+        {
+
+            SetupController();
+        }
+
+
 
         private void SetupController()
         {
@@ -70,7 +76,7 @@ namespace InterfaceTest
             }
 
 
-            // Start the online mode
+            // StartMessage the online mode
             _controller.StartOnlineMode();
 
 
@@ -135,9 +141,5 @@ namespace InterfaceTest
             Console.WriteLine();
         }
 
-        public void Run()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

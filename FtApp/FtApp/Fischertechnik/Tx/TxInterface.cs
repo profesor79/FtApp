@@ -137,7 +137,7 @@ namespace TXCommunication
                 
                 Connection = ConnectionStatus.Online;
 
-                // Start update timer
+                // StartMessage update timer
                 _updateValuesTimer.Start();
 
                 // Fire event to notify that online mode has started
